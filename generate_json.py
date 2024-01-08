@@ -8,10 +8,14 @@ def get_game_name_and_icon_name(full_icon_name):
     parts = full_icon_name.split('-')
     
     # Extract game name and icon name
-    game_name = ' '.join(parts[:-3])
+    game_name_parts = parts[:-3]
     icon_name = '-'.join(parts[-3:-1])
+
+    # Special case for names with multiple hyphens, join everything before the last hyphen
+    game_name = ' '.join(game_name_parts[:-1]) if len(game_name_parts) > 1 else game_name_parts[0]
     
     return game_name, icon_name
+
 
 def get_title_id(full_icon_name):
     # Extract title ID from the filename
