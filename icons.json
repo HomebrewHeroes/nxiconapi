@@ -1,0 +1,113 @@
+{
+  "games": [
+    {
+      "name": "Azure Striker Gunvolt 3",
+      "normalIcon": "https://i.ibb.co/tpGz4NC/azure-striker-gunvolt-3-button-fin-1658535257886.jpg",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/c2mG37P/aec3e4a8bf7a9a78686f7973d4c848b1.png", "author": "sodasoba"}
+      ]
+    },
+    {
+      "name": "Cuphead",
+      "normalIcon": "https://i.ibb.co/CHJbkB9/image-2024-01-07-170919134.png",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/Jd7PCzN/image-2024-01-07-170953246.png", "author": "sodasoba"},
+        {"name": "Icon002", "url": "https://i.ibb.co/gZmBTDy/image-2024-01-07-171027325.png", "author": "sodasoba"},
+        {"name": "Icon003", "url": "https://i.ibb.co/TcrXw6N/image-2024-01-07-171058450.png", "author": "sodasoba"}
+      ]
+    },
+    {
+      "name": "Pokémon Scarlet and Violet",
+      "normalIcon": "https://i.ibb.co/C90nzXn/share-tw.jpg",
+      "subcategories": [
+        {
+          "name": "Scarlet",
+          "icons": [
+            {"name": "Icon001", "url": "https://i.ibb.co/jypTZ3p/pokemon-scarlet-icon001-0100-A3-D008-C5-C000.png", "author": "Aarontendo"},
+            {"name": "Icon002", "url": "https://i.ibb.co/1mcjLB5/image-2024-01-06-160902255.png", "author": "Nintendo"}
+          ]
+        },
+        {
+          "name": "Violet",
+          "icons": [
+            {"name": "Icon001", "url": "https://i.ibb.co/0VK7TQ3/Pokemon-Violet.png", "author": "Aarontendo"},
+            {"name": "Icon002", "url": "https://i.ibb.co/cc0Tcc1/pokemon-violet-zczj.jpg", "author": "Nintendo"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Super Mario Bros. Wonder",
+      "normalIcon": "https://i.ibb.co/xSXzMFM/1x1-supermariobroswonder-1687454112497.jpg",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/WPqXk48/Custom-Snipperclips-Background-1-1.png", "author": "Aarontendo"}
+      ]
+    },
+    {
+      "name": "Super Smash Bros. Ultimate",
+      "normalIcon": "https://i.ibb.co/5rYHz8z/image-2024-01-07-105342237.png",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/gtG3ZfF/530-90-637830690fc72.jpg", "author": "SirKira001"}
+      ]
+    },
+    {
+      "name": "Tinfoil",
+      "normalIcon": "https://i.ibb.co/SdX8bRb/image-2024-01-07-173418067.png",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/ng3mrhN/7a7293ff32b2ad98bd4dd01fcf5cd22e.png", "author": "sodasoba"}
+      ]
+    },
+    {
+      "name": "Cruis'n Blast",
+      "normalIcon": "https://i.ibb.co/fxGT61g/FBu-FFvcy-400x400.jpg",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/NChpr8w/5031fe4276fb6a875ffaeaf2aff15db7.png", "author": "sodasoba"},
+        {"name": "Icon002", "url": "https://i.ibb.co/LpjQzJD/image-2024-01-07-175921329.png", "author": "sodasoba"}
+      ]
+    },
+    {
+      "name": "Cris Tales",
+      "normalIcon": "https://i.ibb.co/f8xWf8K/image-2024-01-07-180051898.png",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/dgXbVBM/image-2024-01-07-180124161.png", "author": "sodasoba"},
+        {"name": "Icon002", "url": "https://i.ibb.co/YhPJv5r/e5e2de7f3ef2043b664c121bd22f853c.png", "author": "sodasoba"}
+      ]
+    },
+    {
+      "name": "Creature in the Well",
+      "normalIcon": "https://i.ibb.co/C0zTvyr/image-2024-01-07-180630661.png",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/NSfgRpV/image-2024-01-07-180706398.png", "author": "sodasoba"},
+        {"name": "Icon002", "url": "https://i.ibb.co/tHdTNYj/image-2024-01-07-180755293.png", "author": "sodasoba"}
+      ]
+    },
+    {
+      "name": "Crimzon Clover World EXplosion",
+      "normalIcon": "https://i.ibb.co/HtjKRZc/image-2024-01-07-180928650.png",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.ibb.co/bvQTHzF/d0e5de6daedcf05cad800f50b14875e6.png", "author": "sodasoba"}
+      ]
+    },
+    {
+      "name": "Crash Bandicoot: N. Sane Trilogy",
+      "normalIcon": "https://i.imgur.com/E6EK8l0.jpg",
+      "icons": [
+        {"name": "Icon001", "url": "https://i.imgur.com/xaHBo4L.png", "author": "sodasoba"},
+        {"name": "Icon002", "url": "https://i.imgur.com/Rn8zNyP.png", "author": "Xerlientt"},
+        {"name": "Icon003", "url": "https://i.imgur.com/Kr7PXic.png", "author": "darklinkpower"},
+        {"name": "Icon004", "url": "https://i.imgur.com/rvUMVbE.png", "author": "BIGMANCOCONUT"},
+        {"name": "Icon005", "url": "https://i.imgur.com/0Hq1LVZ.png", "author": "sodasoba"},
+        {"name": "Icon006", "url": "https://i.imgur.com/sEghymY.png", "author": "sodasoba"}
+      ]
+    }
+  ],
+  "authors": [
+    {"name": "Nintendo", "link": "https://www.nintendo.com/us/about/"},
+    {"name": "Aarontendo", "link": "https://gamebanana.com/members/2292370"},
+    {"name": "sodasoba", "link": "https://www.steamgriddb.com/profile/76561199237351291"},
+    {"name": "SirKira001", "link": "https://gamebanana.com/members/1720925"},
+    {"name": "darklinkpower", "link": "https://www.steamgriddb.com/profile/76561198025294991"},
+    {"name": "BIGMANCOCONUT", "link": "https://www.steamgriddb.com/profile/76561199100807734"},
+    {"name": "Xerlientt", "link": "https://www.steamgriddb.com/profile/76561198319892674"}
+  ]
+}
