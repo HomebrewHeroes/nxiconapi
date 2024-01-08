@@ -37,8 +37,10 @@ def fetch_icons(base_url, subdirectories):
             existing_entry = next((entry for entry in icons_data if entry["name"] == game_name), None)
 
             if existing_entry:
+                # Update existing game entry
                 existing_entry["icons"].append(icon_data)
             else:
+                # Add new game entry
                 game_entry = {"name": game_name, "normalIcon": image_link, "icons": [icon_data]}
                 icons_data.append(game_entry)
 
