@@ -27,7 +27,7 @@ def generate_json_data(subdirectories):
         icons_soup = BeautifulSoup(icons_response.text, 'html.parser')
         icon_files = [a['href'] for a in icons_soup.find_all('a', href=True) if a.text and a.text.endswith(".jpg")]
 
-        for icon_file in icon_files:
+        for i, icon_file in enumerate(icon_files):
             # Extract game name, icon name, and title id from the icon file name
             parts = icon_file.split('-')
             game_name = ' '.join(parts[:-3]).replace("#", "").replace("-", " ").title()
@@ -35,7 +35,7 @@ def generate_json_data(subdirectories):
             title_id = parts[-1].split('[')[-1].split(']')[0]
 
             icon_url = f"{raw_github_url}/{subdirectory}/{icon_file}"
-            icon_data = {"name": f"{icon_name}-{title_id}", "url": icon_url, "author": "sodasoba"}
+            icon_data = {"name": f"Icon{i + 1}", "url": icon_url, "author": "sodasoba"}
             icons.append(icon_data)
 
         # Create game entry in the JSON data
