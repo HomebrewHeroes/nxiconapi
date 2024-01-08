@@ -18,29 +18,28 @@ def fetch_icons(base_url, subdirectories):
 
     for subdirectory in subdirectories:
         subdirectory_url = os.path.join(base_url, subdirectory)
-        
-        # Fetch HTML content of subdirectory page
-        response = requests.get(subdirectory_url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Extract all image links
-        image_links = [img['src'] for img in soup.find_all('img') if img['src'].endswith('.jpg')]
-        
+
+        # Fetch the list of files in the subdirectory using GitHub API
+        api_url = f'https://api.github.com/repos/sodasoba1/NSW-Custom-Game-Icons-square/contents/Default/{subdirectory}?ref=main'
+        response = requests.get(api_url)
+        files_info = response.json()
+
+        # Filter only .jpg and .png files
+        image_files = [file_info['download_url'] for file_info in files_info if file_info['name'].lower().endswith(('.jpg', '.png'))]
+
         # Extract game name and icon name for each image
-        for image_link in image_links:
-            game_name, icon_name = get_game_name_and_icon_name(image_link)
+        for image_link in image_files:
+            game_name, icon_name = get_game_name_and_icon_name(os.path.basename(image_link))
             author = "sodasoba"
-            icon_url = os.path.join(base_url, subdirectory, image_link)
-            
-            icon_data = {"name": icon_name, "url": icon_url, "author": author}
-            
+            icon_data = {"name": icon_name, "url": image_link, "author": author}
+
             # Check if the game entry already exists in icons_data
             existing_entry = next((entry for entry in icons_data if entry["name"] == game_name), None)
-            
+
             if existing_entry:
                 existing_entry["icons"].append(icon_data)
             else:
-                game_entry = {"name": game_name, "normalIcon": icon_url, "icons": [icon_data]}
+                game_entry = {"name": game_name, "normalIcon": image_link, "icons": [icon_data]}
                 icons_data.append(game_entry)
 
     return icons_data
