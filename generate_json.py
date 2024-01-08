@@ -24,11 +24,20 @@ def get_game_name_and_icon_name(full_icon_name):
 
 def get_title_id(full_icon_name):
     # Extract title ID from the filename
-    start_idx = full_icon_name.find('[', 0)
-    end_idx = full_icon_name.find(']', start_idx)
-    title_id = full_icon_name[start_idx + 1:end_idx]
+    start_indicator = '%5B'
+    end_indicator = '%5D'
     
-    return title_id
+    start_idx = full_icon_name.find(start_indicator, 0)
+    end_idx = full_icon_name.find(end_indicator, start_idx)
+
+    # Check if both indicators are found and have a valid range
+    if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
+        title_id = full_icon_name[start_idx + len(start_indicator):end_idx]
+        return title_id
+    else:
+        # Return None or raise an exception based on your preference for handling invalid cases
+        return None
+
 
 def fetch_icons(base_url, subdirectories):
     icons_data = []
