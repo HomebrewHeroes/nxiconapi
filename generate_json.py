@@ -46,8 +46,21 @@ def generate_json_data(subdirectories):
 
 # Write JSON data to a file
 def write_json_file(data):
-    with open('output.json', 'w') as json_file:
-        json.dump(data, json_file, indent=2)
+    output_filename = 'output.json'
+    if os.path.exists(output_filename):
+        with open(output_filename, 'r') as existing_file:
+            existing_data = json.load(existing_file)
+
+        # Update the existing JSON data with new entries
+        existing_data["games"].extend(data["games"])
+        existing_data["authors"].extend(data["authors"])
+
+        with open(output_filename, 'w') as json_file:
+            json.dump(existing_data, json_file, indent=2)
+    else:
+        # Write the JSON data to a new file
+        with open(output_filename, 'w') as json_file:
+            json.dump(data, json_file, indent=2)
 
 if __name__ == "__main__":
     subdirectories = get_subdirectories_with_icons()
