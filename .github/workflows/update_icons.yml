@@ -23,7 +23,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests beautifulsoup4
 
-    - name: Run script
+    - name: Run generate_json.py
       run: python generate_json.py
 
     - name: Commit and push changes
@@ -32,4 +32,4 @@ jobs:
         git config --global user.name "GitHub Actions"
         git add output.json
         git diff --quiet && git diff --staged --quiet || git commit -m "Update icons [skip ci]"
-        git push
+        git push https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
