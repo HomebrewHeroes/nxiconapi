@@ -11,10 +11,7 @@ def get_game_name_and_icon_name(full_icon_name):
     game_name = ' '.join(parts[:-3])
     icon_name = '-'.join(parts[-3:-1])
     
-    # Extract title id from square brackets
-    title_id = full_icon_name.split('[')[-1].split(']')[0]
-    
-    return game_name, icon_name, title_id
+    return game_name, icon_name
 
 def fetch_icons(base_url, subdirectories):
     icons_data = []
@@ -29,9 +26,9 @@ def fetch_icons(base_url, subdirectories):
         # Extract all image links
         image_links = [img['src'] for img in soup.find_all('img') if img['src'].endswith('.jpg')]
         
-        # Extract game name, icon name, and title id for each image
+        # Extract game name and icon name for each image
         for image_link in image_links:
-            game_name, icon_name, title_id = get_game_name_and_icon_name(image_link)
+            game_name, icon_name = get_game_name_and_icon_name(image_link)
             author = "sodasoba"
             icon_url = os.path.join(base_url, subdirectory, image_link)
             
@@ -48,20 +45,39 @@ def fetch_icons(base_url, subdirectories):
 
     return icons_data
 
+def merge_with_existing_json(existing_json_path, new_icons_data):
+    with open(existing_json_path, 'r') as existing_json_file:
+        existing_data = json.load(existing_json_file)
+
+    # Update or add games from new_icons_data to existing_data
+    for new_game_entry in new_icons_data:
+        existing_game_entry = next((entry for entry in existing_data["games"] if entry["name"] == new_game_entry["name"]), None)
+        
+        if existing_game_entry:
+            # Update existing game entry
+            existing_game_entry["normalIcon"] = new_game_entry["normalIcon"]
+            existing_game_entry["icons"].extend(new_game_entry["icons"])
+        else:
+            # Add new game entry
+            existing_data["games"].append(new_game_entry)
+
+    return existing_data
+
 def main():
     base_url = "https://raw.githubusercontent.com/sodasoba1/NSW-Custom-Game-Icons-square/main/Default/"
     subdirectories = ["0-9", "A", "Arcade-archive", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
                       "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
-    icons_data = fetch_icons(base_url, subdirectories)
+    new_icons_data = fetch_icons(base_url, subdirectories)
 
-    # Add authors data
-    icons_data.append({"authors": [{"name": "sodasoba", "link": "https://www.steamgriddb.com/profile/76561199237351291"}]})
-    
+    # Merge with existing icons.json data
+    existing_json_path = "icons.json"
+    merged_data = merge_with_existing_json(existing_json_path, new_icons_data)
+
     # Create JSON file
     output_file_path = "output.json"
     with open(output_file_path, "w") as json_file:
-        json.dump(icons_data, json_file, indent=2)
+        json.dump(merged_data, json_file, indent=2)
 
 if __name__ == "__main__":
     main()
