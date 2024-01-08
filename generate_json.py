@@ -21,7 +21,7 @@ def get_title_id(full_icon_name):
     
     return title_id
 
-def fetch_icons(base_url, subdirectories, allowed_titles):
+def fetch_icons(base_url, subdirectories):
     icons_data = []
 
     for subdirectory in subdirectories:
@@ -40,26 +40,28 @@ def fetch_icons(base_url, subdirectories, allowed_titles):
             game_name, icon_name = get_game_name_and_icon_name(os.path.basename(image_link))
             title_id = get_title_id(os.path.basename(image_link))
             
-            # Check if the title is in the allowed_titles list
-            if game_name in allowed_titles:
-                author = "sodasoba"
-                icon_data = {"name": icon_name, "url": image_link, "author": author}
+            author = "sodasoba"
+            icon_data = {"name": icon_name, "url": image_link, "author": author}
 
-                # Check if the game entry already exists in icons_data based on title ID
-                existing_entry = next((entry for entry in icons_data if entry["name"] == game_name), None)
+            # Check if the game entry already exists in icons_data based on title ID
+            existing_entry = next((entry for entry in icons_data if entry["name"] == game_name), None)
 
-                if existing_entry:
-                    existing_entry["normalIcon"] = image_link
-                    existing_entry["icons"].append(icon_data)
-                else:
-                    game_entry = {"name": game_name, "normalIcon": image_link, "icons": [icon_data]}
-                    icons_data.append(game_entry)
+            if existing_entry:
+                existing_entry["normalIcon"] = image_link
+                existing_entry["icons"].append(icon_data)
+            else:
+                game_entry = {"name": game_name, "normalIcon": image_link, "icons": [icon_data]}
+                icons_data.append(game_entry)
 
     return icons_data
 
 def merge_with_existing_json(existing_json_path, new_icons_data):
-    with open(existing_json_path, 'r') as existing_json_file:
-        existing_data = json.load(existing_json_file)
+    # If the existing JSON file doesn't exist, create an empty data structure
+    if not os.path.exists(existing_json_path):
+        existing_data = {"games": []}
+    else:
+        with open(existing_json_path, 'r') as existing_json_file:
+            existing_data = json.load(existing_json_file)
 
     # Update or add games from new_icons_data to existing_data
     for new_game_entry in new_icons_data:
@@ -80,8 +82,7 @@ def main():
     subdirectories = ["0-9", "A", "Arcade-archive", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
                       "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
-    allowed_titles = ["Pokémon Scarlet and Violet", "Super Mario Bros. Wonder"]
-    new_icons_data = fetch_icons(base_url, subdirectories, allowed_titles)
+    new_icons_data = fetch_icons(base_url, subdirectories)
 
     # Merge with existing icons.json data
     existing_json_path = "icons.json"
