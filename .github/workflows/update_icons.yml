@@ -24,12 +24,16 @@ jobs:
         pip install requests beautifulsoup4
 
     - name: Run script
-      run: python generate_json.py
+      run: |
+        if ! python generate_json.py; then
+          echo "Error: Script execution failed."
+          exit 1
+        fi
 
     - name: Commit and push changes
       run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git add output.json
-        git commit -m "Update icons [skip ci]"
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update icons [skip ci]"
         git push https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
