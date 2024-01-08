@@ -12,9 +12,16 @@ def get_game_name_and_icon_name(full_icon_name):
     icon_name = '-'.join(parts[-3:-1])
 
     # Special case for names with multiple hyphens, join everything before the last hyphen
-    game_name = ' '.join(game_name_parts[:-1]) if len(game_name_parts) > 1 else game_name_parts[0]
-    
+    if len(game_name_parts) > 1:
+        game_name = ' '.join(game_name_parts[:-1])
+    elif len(game_name_parts) == 1:
+        game_name = game_name_parts[0]
+    else:
+        # Handle the case where game_name_parts is an empty list
+        game_name = "NULL"
+
     return game_name, icon_name
+
 
 
 def get_title_id(full_icon_name):
