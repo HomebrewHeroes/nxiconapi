@@ -22,8 +22,6 @@ def get_game_name_and_icon_name(full_icon_name):
 
     return game_name, icon_name
 
-
-
 def get_title_id(full_icon_name):
     # Extract title ID from the filename
     start_idx = full_icon_name.find('[', 0)
@@ -55,16 +53,19 @@ def fetch_icons(base_url, subdirectories):
             icon_data = {"name": icon_name, "url": image_link, "author": author}
 
             # Check if the game entry already exists in icons_data based on title ID
-            existing_entry = next((entry for entry in icons_data if entry["name"] == game_name), None)
+            existing_entry = next((entry for entry in icons_data if entry.get("title_id") == title_id), None)
 
             if existing_entry:
                 existing_entry["normalIcon"] = image_link
                 existing_entry["icons"].append(icon_data)
             else:
-                game_entry = {"name": game_name, "normalIcon": image_link, "icons": [icon_data]}
+                game_entry = {"title_id": title_id, "name": game_name, "normalIcon": image_link, "icons": [icon_data]}
                 icons_data.append(game_entry)
 
     return icons_data
+
+
+
 
 def merge_with_existing_json(existing_json_path, new_icons_data):
     # If the existing JSON file doesn't exist, create an empty data structure
