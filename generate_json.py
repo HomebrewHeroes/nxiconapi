@@ -82,11 +82,15 @@ def main():
     subdirectories = ["0-9", "A", "Arcade-archive", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
                       "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
-    new_icons_data = fetch_icons(base_url, subdirectories)
+    sodasoba_icons_data = fetch_icons(base_url, subdirectories)
 
-    # Merge with existing icons.json data
+    # Load existing icons.json data
     existing_json_path = "icons.json"
-    merged_data = merge_with_existing_json(existing_json_path, new_icons_data)
+    with open(existing_json_path, 'r') as existing_json_file:
+        existing_data = json.load(existing_json_file)
+
+    # Merge sodasoba_icons_data with existing_data
+    merged_data = merge_with_existing_json(existing_json_path, sodasoba_icons_data)
 
     # Create JSON file
     output_file_path = "output.json"
