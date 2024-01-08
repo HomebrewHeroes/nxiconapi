@@ -30,8 +30,8 @@ def generate_json_data(subdirectories):
         for icon_file in icon_files:
             # Extract game name, icon name, and title id from the icon file name
             parts = icon_file.split('-')
-            game_name = parts[0].replace("#", "").replace("-", " ").title()
-            icon_name = parts[-2]
+            game_name = ' '.join(parts[:-3]).replace("#", "").replace("-", " ").title()
+            icon_name = parts[-3]
             title_id = parts[-1].split('[')[-1].split(']')[0]
 
             icon_url = f"{raw_github_url}/{subdirectory}/{icon_file}"
